@@ -1,48 +1,30 @@
 import java.util.Scanner;
 
-public class Giocatore extends Thread{
+public class Giocatore extends Thread {
     private String nome;
-    private int punteggio;
+    private int numeroScelto;
     GestoreGioco gg;
 
-    public Giocatore(String nome,GestoreGioco gg) {
+    public Giocatore(String nome, GestoreGioco gg) {
         this.nome = nome;
-        this.punteggio = 0;
-        this.gg=gg;
-    }
-    public void comunica() {
-        System.out.println(nome);
+        this.gg = gg;
     }
 
+    public int getNumeroScelto() {
+        return numeroScelto;
+    }
 
-
+    public String getNome() {
+        return nome;
+    }
 
     @Override
-    public void run(){
-        try {
-            sleep(5000);
-        } catch (InterruptedException e) {
-            System.err.println("errore");
-        }
-        this.comunica();
-        this.gioca();
-
-    }
-
-    private void gioca() {
-        //choiedere in input un numero (stampa)
-        System.out.println("Inserisci il numero: ");
-
-        //leggere il numero (scanner)
-        Scanner input = new Scanner(System.in);
-        int num = input.nextInt();
-       // input.close();
-
-        System.out.println("Ho scelto il numero" + num);
-
-
-        //invocare verifica
-        gg.verifica(num);
+    public void run() {
+      
+            System.out.print(nome + ", inserisci il numero (1-50): ");
+            Scanner input = new Scanner(System.in);
+            numeroScelto = input.nextInt();
+        
     }
 }
 
