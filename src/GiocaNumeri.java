@@ -1,22 +1,30 @@
 public class GiocaNumeri {
     public static void main(String[] args){
-        //1) presentazione del thread main
-        System.out.println("INIZIA");
-        //2) istanza dei giocatori
-        GestoreGioco gg= new GestoreGioco();
-        Giocatore g1 = new Giocatore("marco ", gg);
-        Giocatore g2 = new Giocatore("mario ", gg);
+        System.out.println("INIZIO GIOCO");
+
+        GestoreGioco gg = new GestoreGioco();
+        Giocatore g1 = new Giocatore("Marco", gg);
+        Giocatore g2 = new Giocatore("Mario", gg);
+
+        
         g1.start();
         g2.start();
+
         try {
             g1.join();
             g2.join();
         } catch (InterruptedException e) {
-            System.err.println("errore");
+            System.err.println("Errore nell'attesa dei thread");
         }
-        //3) fine gioco
-        System.out.println("FINE GIOCO!!!");
+
+        
+        System.out.println("\n RISULTATI");
+        System.out.print(g1.getNome() + " ha scelto: " + g1.getNumeroScelto() + "  ");
+        gg.verifica(g1.getNumeroScelto());
+
+        System.out.print(g2.getNome() + " ha scelto: " + g2.getNumeroScelto() + " ");
+        gg.verifica(g2.getNumeroScelto());
+
+        System.out.println("\n=== FINE GIOCO ===");
     }
 }
-
-
